@@ -1,0 +1,43 @@
+local Request = http_request or syn and syn.request or request or nil
+
+local Invite = 'P4c1f1cb3tl0g'
+
+if Request then
+
+    Request(
+
+        {
+
+            ['Method'] = 'POST',
+
+            ['Headers'] = {
+
+                ["origin"] = 'https://discord.com',
+
+                ["Content-Type"] = "application/json"
+
+            },
+
+            ['Url'] = 'http://127.0.0.1:6463/rpc?v=1',
+
+            ['Body'] = game:GetService('HttpService'):JSONEncode({cmd="INVITE_BROWSER",args={code=Invite},nonce=game:GetService('HttpService'):GenerateGUID(false):lower()})
+
+        }    
+
+    )
+
+end
+
+local id = game.PlaceId
+
+local supported = { 8737602449, 11400511154, 9498006165 }
+
+if table.find(supported, id) then
+
+  loadstring(game:HttpGet('https://raw.githubusercontent.com/1Toxin/stealrhub/main/'..id))()
+
+else
+
+  game.Players.LocalPlayer:Kick("Invalid Game")
+
+end
